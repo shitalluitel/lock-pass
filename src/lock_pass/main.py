@@ -87,21 +87,20 @@ def run():
             print save(i_username,i_password)
 
             s_choice = raw_input("\nDo You Want To Continue (y/n): ")
-
             if s_choice.lower() == 'y':
                 continue
             else:
                 while True:
-                    s_choice = raw_input("\n1. To Retrive Your Password \n2. Exit \nChoice")
+                    s_choice = raw_input("\n1. To Retrive Your Password \n2. Exit \nChoice:")
                     if int(s_choice) == 1:
                         choice = 2
-                        continue
+                        break
                     elif int(s_choice) == 2:
                         print "!!!Thank You!!!"
                         exit()
-
         elif choice == 2:
             user_dict = getdir()
+            print "\n**You are going to retrive your password**"
             r_username = raw_input("Enter username: ")
             while r_username not in user_dict.keys():
                 print "\n***Username not found***"
@@ -120,8 +119,8 @@ def run():
                 while True:
                     s_choice = raw_input("\n1. To Add Username And Password \n2. Exit \nChoice: ")
                     if int (s_choice) == 1:
-                        choice = 2
-                        continue
+                        choice = 1
+                        break
                     elif int(s_choice) == 2:
                         print "\n\n!!!Thank You!!!"
                         exit()
@@ -129,6 +128,7 @@ def run():
         else:
             print "\n\n!!!Thank You!!!"
             exit()
+
 
 
 
