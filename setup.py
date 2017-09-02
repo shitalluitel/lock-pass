@@ -18,7 +18,7 @@ classifiers = ['Environment :: Console',
 # version = open('CHANGES.txt').readlines()[0][1:].strip()
 
 setup(name='lock-pass',
-      version= '1.5',
+      version= '1.7',
       description= "To save username and password",
       author='Shital Babu Luitel',
       author_email='ctalluitel@gmail.com',
