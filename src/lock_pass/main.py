@@ -56,11 +56,11 @@ def set_up():
         print "**File Not found**"
         print "******************\n"
         print "Creating file",
-        for i in range(randint(1, 6)):
+        for i in range(randint(1, 10)):
             print ".",
             time.sleep(1)
-        print
-        print "File created."
+
+        print "\nFile created."
         f_password.close()
         f_username.close()
     else:
@@ -86,18 +86,20 @@ def run():
 
             print save(i_username,i_password)
 
-            s_choice = raw_input("\nDo You Want To Continue (y/n): ")
-            if s_choice.lower() == 'y':
-                continue
-            else:
-                while True:
-                    s_choice = raw_input("\n1. To Retrive Your Password \n2. Exit \nChoice:")
-                    if int(s_choice) == 1:
-                        choice = 2
-                        break
-                    elif int(s_choice) == 2:
-                        print "!!!Thank You!!!"
-                        exit()
+            while True:
+                s_choice = raw_input("\nDo You Want To Continue (y/n): ")
+                if s_choice.lower() == 'y':
+                    break
+                elif s_choice.lower() == 'n':
+                    while True:
+                        s_choice = raw_input("\n1. To Retrive Your Password \n2. Exit \nChoice:")
+                        if int(s_choice) == 1:
+                            choice = 2
+                            break
+                        elif int(s_choice) == 2:
+                            print "!!!Thank You!!!"
+                            exit()
+
         elif choice == 2:
             user_dict = getdir()
             print "\n**You are going to retrive your password**"
@@ -111,23 +113,24 @@ def run():
             spam = pyperclip.paste()
             print "Password \"%s\" for username \"%s\" copied to clipboard." %( "*" * len(r_password), r_username)
 
-            s_choice = raw_input("\nDo You Want To Continue (y/n): ")
-
-            if s_choice.lower() == 'y':
-                continue
-            else:
-                while True:
-                    s_choice = raw_input("\n1. To Add Username And Password \n2. Exit \nChoice: ")
-                    if int (s_choice) == 1:
-                        choice = 1
-                        break
-                    elif int(s_choice) == 2:
-                        print "\n\n!!!Thank You!!!"
-                        exit()
+            while True:
+                s_choice = raw_input("\nDo You Want To Continue (y/n): ")
+                if s_choice.lower() == 'y':
+                    break
+                else:
+                    while True:
+                        s_choice = raw_input("\n1. To Add Username And Password \n2. Exit \nChoice: ")
+                        if int(s_choice) == 1:
+                            choice = 1
+                            break
+                        elif int(s_choice) == 2:
+                            print "\n\n!!!Thank You!!!"
+                            exit()
 
         else:
             print "\n\n!!!Thank You!!!"
             exit()
+
 
 
 
