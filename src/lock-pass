@@ -1,0 +1,3 @@
+if __name__ == "__main__":
+	from lock_pass.main import main
+	main()
