@@ -6,7 +6,6 @@ import pyperclip
 password = ".password.txt"
 username = ".username.txt"
 path = "."
-user_dict = {}
 
 #searching for file
 def find(password, username, path):
@@ -28,7 +27,8 @@ def save(i_username, i_password):
     f_password.write("%s\n" % (i_password))
     f_username.close()
     f_password.close()
-    return "Username and Password Saved."
+    print "Username and Password Saved."
+    return getdir()
 
 def getdir():
     f_username = open(username,"r+")
@@ -65,13 +65,15 @@ def set_up():
         f_username.close()
     else:
         print "***File Found***"
-        user_dict = getdir()
+        return getdir()
 
 def run():
-    set_up()
+    user_dict = {}
+    user_dict = set_up()
     print "\n1. To Save Password"
     print "2. To Retrive Password"
-    print "3. To Exit"
+    print "3. Vier User List"
+    print "4. To Exit"
     choice = int(raw_input("Enter your Choice: "))
 
     while True:
@@ -84,7 +86,7 @@ def run():
                 i_username = raw_input("Enter UserName: ")
                 i_password = raw_input("Enter Password: ")
 
-            print save(i_username,i_password)
+            user_dict = save(i_username,i_password)
 
             while True:
                 s_choice = raw_input("\nDo You Want To Continue (y/n): ")
@@ -92,21 +94,30 @@ def run():
                     break
                 elif s_choice.lower() == 'n':
                     while True:
-                        s_choice = raw_input("\n1. To Retrive Your Password \n2. Exit \nChoice:")
+                        s_choice = raw_input("\n1. To Retrive Your Password \n2. View User List \n3. Exit \nChoice:")
                         if int(s_choice) == 1:
                             choice = 2
                             break
                         elif int(s_choice) == 2:
+                            choice = 3
+                            break
+                        elif int(s_choice) == 3:
                             print "!!!Thank You!!!"
                             exit()
+                    break
 
         elif choice == 2:
             user_dict = getdir()
             print "\n**You are going to retrive your password**"
             r_username = raw_input("Enter username: ")
+
             while r_username not in user_dict.keys():
                 print "\n***Username not found***"
-                r_username = raw_input("Enter Username: ")
+                print "\nSome Username And Password are:"
+                for user in user_dict.keys():
+                    print "%d. %s => %s" %(i,user,"*" * len(user_dict[user]))
+                    i += 1
+                r_username = raw_input("\nEnter Username: ")
 
             r_password = user_dict[r_username]
             pyperclip.copy(r_password)
@@ -119,20 +130,46 @@ def run():
                     break
                 else:
                     while True:
-                        s_choice = raw_input("\n1. To Add Username And Password \n2. Exit \nChoice: ")
+                        s_choice = raw_input("\n1. To Add Username And Password \n2. View User List \n3. Exit \nChoice: ")
                         if int(s_choice) == 1:
                             choice = 1
                             break
                         elif int(s_choice) == 2:
+                            choice = 3
+                            break
+                        elif int(s_choice) == 3:
                             print "\n\n!!!Thank You!!!"
                             exit()
+                    break
+
+        elif choice == 3:
+            if len(user_dict) == 0:
+                print "\nUsername and Password not found."
+                run()
+                
+            else:
+                print "\n**Saved Username and Password**"
+                i = 1
+                for user in user_dict.keys():
+                    print "%d. %s => %s" %(i,user,"*" * len(user_dict[user]))
+                    i += 1
+                # print user_dict
+
+                while True:
+                    s_choice = raw_input("\n1. To Add Username And Password \n2. To Retrive Password  \n3. Exit \nChoice: ")
+                    if int(s_choice) == 1:
+                        choice = 1
+                        break
+                    elif int(s_choice) == 2:
+                        choice = 2
+                        break
+                    elif int(s_choice) == 3:
+                        print "\n\n!!!Thank You!!!"
+                        exit()
 
         else:
             print "\n\n!!!Thank You!!!"
             exit()
-
-
-
 
 
 def main():

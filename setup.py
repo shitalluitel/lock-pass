@@ -5,7 +5,7 @@ try:
 except ImportError:
     from distutils.core import setup
     
-# requirements = [pkg.split('=')[0] for pkg in open('requirements.txt').readlines()]
+requirements = [pkg.split('=')[0] for pkg in open('requirements.txt').readlines()]
 
 # description = "Commandline tool to listen all radio stations of Nepal"
 
@@ -18,12 +18,13 @@ classifiers = ['Environment :: Console',
 # version = open('CHANGES.txt').readlines()[0][1:].strip()
 
 setup(name='lock-pass',
-      version= '1.9',
+      version= '1.1.0',
       description= "To save username and password",
       author='Shital Babu Luitel',
       author_email='ctalluitel@gmail.com',
       url='https://github.com/shitalluitel/lock-pass',
       scripts=['src/lock-pass',],
+      install_requires=requirements,
       packages=['lock_pass'],
       package_dir = {'lock_pass': 'src/lock_pass'},
       classifiers=classifiers
