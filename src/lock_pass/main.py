@@ -8,7 +8,7 @@ from subprocess import call
 
 login = ".login.txt"
 path = os.path.join(os.path.expanduser('~'))
-user_dict = {}
+# user_dict = {}
 
 
 # searching for file
@@ -21,26 +21,16 @@ def find(login, path):
 
 
 def save(i_username, i_password):
-    username_dict = getdir()
-    username_dict[i_username] = i_password
-
-    # f_login = open(os.path.join(os.path.expanduser('~'), login), "a+")
-    # f_login.write("%s %s\n" % (i_username, i_password))
-    # f_login.close()
+    user_dict = getdir()
+    user_dict[i_username] = i_password
 
     with open(os.path.join(os.path.expanduser('~'), login), "w+") as f:
-        f.write("%s" % (username_dict))
+        f.write("%s" % (user_dict))
     print("Username and Password Saved.")
-    return username_dict
+    return user_dict
 
 
 def getdir():
-    # f_login = open(os.path.join(os.path.expanduser('~'), login), "r+")
-    # username_dict = {}
-    # for line in f_login:
-    #     username_dict[line.split(" ")[0]] = line.split(" ")[1].strip()
-    # f_login.close()
-
     username_dict = {}
     with open(os.path.join(os.path.expanduser('~'), login), "r+") as f:
         for file in f:
@@ -52,9 +42,8 @@ def getdir():
 
 
 def set_up():
+    global user_dict
     if find(login, path) == 0:
-        # f_login = open(os.path.join(os.path.expanduser('~'), login), "w+")
-        # f_login.close()
         with open(os.path.join(os.path.expanduser('~'), login),"w+") as f:
             return {}
     else:
